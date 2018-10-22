@@ -25,17 +25,23 @@ var IMAGES = ["http://www.astrologyhub.com/wp-content/uploads/capricorn-810x810.
     "http://www.astrologyhub.com/wp-content/uploads/sagittarius-810x810.png"];
 
 function reset(){
-    document.getElementById("signOutput").style.visiblity = "none";
-    document.getElementById("horo").style.visiblity = "none";
-    document.getElementById("month_selector").style.visibility = "visible";
-    document.getElementById("inputDate").style.visibility = "visible";
-    document.getElementById("clicker").style.visibility = "visible";
+    var month_selector = document.getElementById("month_selector");
+    var inputDate = document.getElementById("inputDate");
+    var clicker = document.getElementById("clicker");
+    document.getElementById("signOutput").style.visibility = "none";
+    document.getElementById("horo").style.visibility = "none";
+    month_selector.style.visibility = "visible";
+    inputDate.style.visibility = "visible";
+    clicker.style.visibility = "visible";
+    for (var i = 1; i < 32; i++){
+        var option = document.createElement("option");
+        option.setAttribute("value", i);
+        option.innerHTML = i;
+        inputDate.appendChild(option);
+    }
 }
 
 function onSubmit(){
-    document.getElementById("clicker").style.visibility = "none";
-    document.getElementById("month_selector").style.visibility = "none";
-    document.getElementById("inputDate").style.visibility = "none";
     document.getElementById("signOutput").style.visiblity = "visible";
     document.getElementById("horo").style.visiblity = "visible";
     var month = document.getElementById("month_selector").value;
@@ -46,46 +52,47 @@ function onSubmit(){
 function determineSign(month, day){
     var signNum = 0;
     var today = new Date();
-    if ((month == "feb" || month == "apr" || month == "jun" || month == "sep" || month == "nov") && (day == "30" || day == "31")) {
+    if ((month == "feb" || month == "apr"  || month == "jun" || month == "sep" || month == "nov") && (day == 30 || day == 31)) {
         alert("I'm sorry, that date didn't input correctly. Please try again.");
     } else {
-        if (month == "dec" && isBetween(day, "21", "31") || month == "jan" && isBetween(day, "1", "21")) {
+        if (month == "dec" && isBetween(day, 21, 31) || month == "jan" && isBetween(day, 1, 21)) {
             signNum = 0;
-        } else if (month == "jan" && isBetween(day, "21", "31") || month == "feb" && isBetween(day, "1", "21")) {
+        } else if (month == "jan" && isBetween(day, 21, 31) || month == "feb" && isBetween(day, 1, 19)) {
             signNum = 1;
-        } else if (month == "feb" && isBetween(day, "21", "29") || month == "mar" && isBetween(day, "1", "21")) {
+        } else if (month == "feb" && isBetween(day, 19, 29) || month == "mar" && isBetween(day, 1, 20)) {
             signNum = 2;
-        } else if (month == "mar" && isBetween(day, "21", "31") || month == "apr" && isBetween(day, "1", "21")) {
+        } else if (month == "mar" && isBetween(day, 20, 31) || month == "apr" && isBetween(day, 1, 20)) {
             signNum = 3;
-        } else if (month == "apr" && isBetween(day, "21", "30") || month == "mar" && isBetween(day, "1", "21")) {
+        } else if (month == "apr" && isBetween(day, 20, 30) || month == "may" && isBetween(day, 1, 21)) {
             signNum = 4;
-        } else if (month == "may" && isBetween(day, "21", "31") || month == "jun" && isBetween(day, "1", "21")) {
+        } else if (month == "may" && isBetween(day, 21, 31) || month == "jun" && isBetween(day, 1, 22)) {
             signNum = 5;
-        } else if (month == "jun" && isBetween(day, "21", "30") || month == "jul" && isBetween(day, "1", "21")) {
+        } else if (month == "jun" && isBetween(day, 22, 30) || month == "jul" && isBetween(day, 1, 22)) {
             signNum = 6;
-        } else if (month == "jul" && isBetween(day, "21", "31") || month == "aug" && isBetween(day, "1", "21")) {
+        } else if (month == "jul" && isBetween(day, 22, 31) || month == "aug" && isBetween(day, 1, 23)) {
             signNum = 7;
-        } else if (month == "aug" && isBetween(day, "21", "31") || month == "sep" && isBetween(day, "1", "21")) {
+        } else if (month == "aug" && isBetween(day, 23, 31) || month == "sep" && isBetween(day, 1, 24)) {
             signNum = 8;
-        } else if (month == "sep" && isBetween(day, "21", "30") || month == "oct" && isBetween(day, "1", "21")) {
+        } else if (month == "sep" && isBetween(day, 24, 30) || month == "oct" && isBetween(day, 1, 24)) {
             signNum = 9;
-        } else if (month == "oct" && isBetween(day, "21", "31") || month == "nov" && isBetween(day, "1", "21")) {
+        } else if (month == "oct" && isBetween(day, 24, 31) || month == "nov" && isBetween(day, 1, 23)) {
             signNum = 10;
         } else {
             signNum = 11;
         }
     }
     if (signNum == today.getMonth() && day == today.getDate()){
-        document.getElementById("bdaymsg").innerHTML = "Happy birthday!";
+        document.getElementById("bdaymsg").innerHTML = "Happy birthday! You can lay the groundwork for great progress and solve an important problem this year.";
     }
     return signNum;
 }
 
 function determineHoroscope(sign){
     var name = document.getElementById("name").value;
-    document.getElementById("signOutput").innerHTML = ("Hello " + name + ", your sign is: " + ZODIACS[sign]);
+    var imgOutput = document.getElementById("imgOutput");
+    document.getElementById("signOutput").innerHTML = "Hello " + name + ", your sign is: " + ZODIACS[sign];
     document.getElementById("horo").innerHTML = HOROSCOPES[sign];
-    document.getElementById("imgOutput").src = IMAGES[sign];
+    imgOutput.innerHTML = "<img src='" + IMAGES[sign] + "'/>";
 }
 
 function isBetween(day, start, end){

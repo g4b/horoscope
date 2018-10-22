@@ -1,20 +1,41 @@
+body {
+    background-color: #90cc99;
+}
+
 button {
     background-color: blueviolet;
     border: 2px solid black;
     color: white;
 }
 
+button, .date, .output, p {
+    font-family: "Courier New";
+}
+
 h1 {
     font-family: "Lucida Calligraphy";
-    color: goldenrod;
+    color: #555555;
+}
+
+h1, .output, p {
+    text-align: center;
 }
 
 .date {
     border: 2px dashed #ff57a9;
 }
 
+.date, #name, #clicker {
+    display: block;
+    margin: 0 auto;
+}
+
+#imgOutput {
+    margin: auto;
+}
+
 .output {
-    border: 3px solid goldenrod;
-    color: black;
-    background-color: gold;
+    border: 3px solid #005566;
+    background-color: lightskyblue;
+    position: relative;
 }
