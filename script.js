@@ -50,8 +50,7 @@ function onSubmit(){
 }
 
 function determineSign(month, day){
-    var signNum = 0;
-    var today = new Date();
+    var signNum;
     if ((month == "feb" || month == "apr"  || month == "jun" || month == "sep" || month == "nov") && (day == 30 || day == 31)) {
         alert("I'm sorry, that date didn't input correctly. Please try again.");
     } else {
@@ -81,6 +80,7 @@ function determineSign(month, day){
             signNum = 11;
         }
     }
+    var today = new Date();
     if (signNum == today.getMonth() && day == today.getDate()){
         document.getElementById("bdaymsg").innerHTML = "Happy birthday! You can lay the groundwork for great progress and solve an important problem this year.";
     }
@@ -89,12 +89,52 @@ function determineSign(month, day){
 
 function determineHoroscope(sign){
     var name = document.getElementById("name").value;
-    var imgOutput = document.getElementById("imgOutput");
     document.getElementById("signOutput").innerHTML = "Hello " + name + ", your sign is: " + ZODIACS[sign];
     document.getElementById("horo").innerHTML = HOROSCOPES[sign];
-    imgOutput.innerHTML = "<img src='" + IMAGES[sign] + "'/>";
+    document.getElementById("horoImg").setAttribute("src", IMAGES[sign]);
 }
 
 function isBetween(day, start, end){
     return day >= start && day < end;
 }
+
+function changeBoxColor(){
+    document.getElementById("name").style.backgroundColor = "#ffffff";
+    document.getElementById("name").style.color = "#000000";
+}
+
+function resetBoxColor(){
+    document.getElementById("name").style.backgroundColor = "#8A2BE2";
+    document.getElementById("name").style.color = "#ffffff";
+}
+
+function changeButtonColor(){
+    document.getElementById("clicker").style.backgroundColor = "#ffffff";
+    document.getElementById("clicker").style.color = "#000000";
+}
+
+function resetButtonColor(){
+    document.getElementById("clicker").style.backgroundColor = "#8A2BE2";
+    document.getElementById("clicker").style.color = "#ffffff";
+}
+
+function changeMonthColor(){
+    document.getElementById("month_selector").style.backgroundColor = "#ffffff";
+    document.getElementById("month_selector").style.color = "#000000";
+}
+
+function resetMonthColor(){
+    document.getElementById("month_selector").style.backgroundColor = "#8A2BE2";
+    document.getElementById("month_selector").style.color = "#ffffff";
+}
+
+function changeDateColor(){
+    document.getElementById("inputDate").style.backgroundColor = "#ffffff";
+    document.getElementById("inputDate").style.color = "#000000";
+}
+
+function resetDateColor(){
+    document.getElementById("inputDate").style.backgroundColor = "#8A2BE2";
+    document.getElementById("inputDate").style.color = "#ffffff";
+}
+

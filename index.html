@@ -9,9 +9,9 @@
 <body onload="reset()">
     <h1>Your Horoscope Revealed!</h1>
     <p>Please enter your name.</p>
-    <input type="textbox" id="name">
+    <input type="textbox" id="name" onmouseover="changeBoxColor()" onmouseout="resetBoxColor()">
     <p>Please select your birth month.</p>
-    <select class="date" id="month_selector">
+    <select class="date" id="month_selector" onmouseover="changeMonthColor()" onmouseout="resetMonthColor()">
         <option value="jan">January</option>
         <option value="feb">February</option>
         <option value="mar">March</option>
@@ -27,15 +27,16 @@
     </select>
 
     <p>Please enter the day of the month you were born.</p>
-    <select class="date" id="inputDate">
-       <!--The JavaScript code in reset() fills this element with 31 day options.-->
-    </select>
-    <br>
-    <button type="button" id="clicker" onclick="onSubmit()">Go!</button>
+    <select class="date" id="inputDate" onmouseover="changeDateColor()" onmouseout="resetDateColor()">
+       <!--The JavaScript code in reset (lines 27-42) fills this element with 31 day options.-->
+    </select><br>
+
+    <button type="button" id="clicker" onclick="onSubmit()" onmouseover="changeButtonColor()" onmouseout="resetButtonColor()">Go!</button>
 
     <div class="output" id="bdaymsg"></div>
     <div class="output" id="signOutput"></div>
-    <div class="output" id="horo"></div>
-    <div id="imgOutput"><img src="https://user-images.githubusercontent.com/6753949/41509588-16212fda-721c-11e8-8650-dc1cdd619072.png"/></div>
+    <div class="output" id="horo"></div><br>
+
+    <div><img src="https://user-images.githubusercontent.com/6753949/41509588-16212fda-721c-11e8-8650-dc1cdd619072.png" id="horoImg" width="250px"/></div>
 </body>
 </html>
