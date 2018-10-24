@@ -91,6 +91,10 @@ function determineHoroscope(sign){
     var name = document.getElementById("name").value;
     document.getElementById("signOutput").innerHTML = "Hello " + name + ", your sign is: " + ZODIACS[sign];
     document.getElementById("horo").innerHTML = HOROSCOPES[sign];
+    determineImage(sign);
+}
+
+function determineImage(sign){
     document.getElementById("horoImg").setAttribute("src", IMAGES[sign]);
 }
 
